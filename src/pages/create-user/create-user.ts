@@ -32,7 +32,7 @@ export class CreateUserPage {
     console.log('ionViewDidLoad CreateUserPage');
     const options: CameraOptions = {
       quality: 20,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      destinationType: this.camera.DestinationType.DATA_URL ,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     };
@@ -41,16 +41,23 @@ export class CreateUserPage {
       // If it's base64 (DATA_URL):
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       console.log(base64Image);
-      
+      let body = {
+        username: this.user["username"],
+        imagefile: base64Image
+      }
+      this.api.post("add_picture",  body).subscribe((resp)=> {
+        console.log(resp);
+        //this.navCtrl.push(hub); 
+      });
       // this.postImage(base64Image).then((resp) => {
       //   console.log(resp);      
       //   //this.navCtrl.push(Create/Join Game);  
       // });
-      this.photUpload.uploadImage(imageData, this.user["username"]).then((resp: any) => {
-        if (resp.status == 200) {
-          //this.navCtrl.push(GameHubPage)
-        }
-      });
+      // this.photUpload.uploadImage(imageData, this.user["username"]).then((resp: any) => {
+      //   if (resp.status == 200) {
+      //     //this.navCtrl.push(GameHubPage)
+      //   }
+      // });
   
      }, (err) => {
       // Handle error

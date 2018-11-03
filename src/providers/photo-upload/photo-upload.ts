@@ -20,20 +20,21 @@ export class PhotoUploadProvider {
       let body = {}
       let url = ""
       if(creatingAccount == true) {
-        url = ('/api/add_picture');
+        url = '/api/add_picture';
         body["username"] = username;
       } else {
       //TODO ADD Assasination Attempt URL                                          
       }
   
       let options: FileUploadOptions = {
-        fileKey: 'file',
+        fileKey: 'imagefile',
         fileName: 'name.jpg',
-        headers: {},
-        params: body
+        headers: {}
      }            
       fileTransfer.upload(URI, url, options,true).then((result) => {
           resolve(result.response);
+      }).catch((err) => {
+        console.log(err);
       });
     });
     return p;
