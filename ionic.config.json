@@ -3,5 +3,11 @@
   "integrations": {
     "cordova": {}
   },
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://phone-assassins2.appspot.com"
+    }
+  ],
   "type": "ionic-angular"
 }

@@ -6,18 +6,17 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class Api {
-  url: string = 'https://phone-assassins2.appspot.com/';
+  url: string = "/api";//'http://phone-assassins2.appspot.com';
 
   constructor(public http: HttpClient) {
   }
 
   get(endpoint: string, params?: any, reqOpts?: any) {
+    
+    
     if (!reqOpts) {
       reqOpts = {
-        headers: new HttpHeaders({
-          'Content-Type':  'application/json',
-          'Access-Control-Allow-Origin': '*'
-        }),
+        
         params: new HttpParams()
       };
     }
@@ -29,6 +28,14 @@ export class Api {
         reqOpts.params = reqOpts.params.set(k, params[k]);
       }
     }
+
+    reqOpts.headers = new HttpHeaders({
+      'Content-Type':  'text/plain',
+      'Access-Control-Allow-Origin': '*'
+    });
+
+    console.log("Added header: ")
+    console.log(this.url + '/' + endpoint)
 
     return this.http.get(this.url + '/' + endpoint, reqOpts);
   }
@@ -47,5 +54,9 @@ export class Api {
 
   patch(endpoint: string, body: any, reqOpts?: any) {
     return this.http.patch(this.url + '/' + endpoint, body, reqOpts);
+  }
+
+  getEndpoint() {
+    return (this.url); 
   }
 }

@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Api } from '../../providers/api/api';
+import { User } from '../../providers/user/user'
+import {PhotoUploadProvider} from '../../providers/photo-upload/photo-upload'
 
 /**
  * Generated class for the CreateUserPage page.
@@ -19,7 +22,8 @@ export class CreateUserPage {
 
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera, 
+              public api: Api, private user: User, private photUpload: PhotoUploadProvider) {
 
     
   }
@@ -27,8 +31,8 @@ export class CreateUserPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreateUserPage');
     const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      quality: 20,
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     };
@@ -37,9 +41,27 @@ export class CreateUserPage {
       // If it's base64 (DATA_URL):
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       console.log(base64Image);
+      
+      // this.postImage(base64Image).then((resp) => {
+      //   console.log(resp);      
+      //   //this.navCtrl.push(Create/Join Game);  
+      // });
+      this.photUpload.uploadImage(imageData, this.user["username"]).then((resp: any) => {
+        if (resp.status == 200) {
+          //this.navCtrl.push(GameHubPage)
+        }
+      });
+  
      }, (err) => {
       // Handle error
      });
   }
-
+  postImage(image) {
+    let body = {
+      "username": this.user["username"],
+      "imagefile": image 
+    }
+    return this.api.post("add_picture", body).toPromise()
+  }
+  
 }
