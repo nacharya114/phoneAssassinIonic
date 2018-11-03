@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 /**
@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class Api {
-  url: string = 'https://example.com/api/v1';
+  url: string = 'https://phone-assassins2.appspot.com/';
 
   constructor(public http: HttpClient) {
   }
@@ -14,6 +14,10 @@ export class Api {
   get(endpoint: string, params?: any, reqOpts?: any) {
     if (!reqOpts) {
       reqOpts = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          'Access-Control-Allow-Origin': '*'
+        }),
         params: new HttpParams()
       };
     }
