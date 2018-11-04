@@ -5,6 +5,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Api } from '../../providers/api/api';
 import { User } from '../../providers/user/user'
 import {PhotoUploadProvider} from '../../providers/photo-upload/photo-upload'
+import { createOrJoin } from '../';
 
 /**
  * Generated class for the CreateUserPage page.
@@ -47,7 +48,7 @@ export class CreateUserPage {
       }
       this.api.post("add_picture",  body).subscribe((resp)=> {
         console.log(resp);
-        //this.navCtrl.push(hub); 
+       this.navCtrl.push(createOrJoin); 
       });
       // this.postImage(base64Image).then((resp) => {
       //   console.log(resp);      

@@ -1,18 +1,30 @@
-<!--
-  Generated template for the HubPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>hub</ion-title>
+    <ion-title>
+      Create or Join Game
+    </ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
-<ion-content padding>
-
+<ion-content padding id="hub">
+  <form id="createOrJoinGame-form1">
+    <ion-item id="createOrJoinGame-input1">
+      <ion-label>
+        Game code
+      </ion-label>
+      <ion-input type="text" placeholder="Enter game code" name="Game name"
+       [(ngModel)]="gamePhrase.phrase" name="phrase">
+      </ion-input>
+    </ion-item>
+  </form>
+  <button id="createOrJoinGame-button4" ion-button color="positive" block 
+  large style="border-radius:5px 5px 5px 5px;" (click)="createGame()">
+    Create Game
+  </button>
+  <button id="createOrJoinGame-button5" ion-button color="positive" block large
+  (click)="joinGame()">
+    Join Game
+  </button>
 </ion-content>
+
+
+
