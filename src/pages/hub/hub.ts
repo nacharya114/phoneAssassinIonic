@@ -33,22 +33,37 @@ export class HubPage {
     let body = {
       "username": this.user["username"],
        "game_id": this.gamePhrase.phrase
-    }
-    return this.api.post("game/create", body).subscribe((resp)=> {
-      console.log(resp); 
-      this.navCtrl.push('gameHub'); 
+    };
+
+    let seq = this.api.get('game/create', body).share();
+
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response, mark the user as logged in
+      if (res.status == 'success') {
+      } else {
+      }
+    }, err => {
+      console.error('ERROR', err);
     });
+    console.log(seq);
     
   }
 
   joinGame() {
     let body = {
       "username": this.user["username"],
-       "game_id": this.gamePhrase.phrase
-    }
-    return this.api.post("game/join", body).subscribe((resp)=> {
-      console.log(resp); 
-      //this.navCtrl.push(wait); 
+      "game_id": this.gamePhrase.phrase
+    };
+    let seq = this.api.get('game/join', body).share();
+
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response, mark the user as logged in
+      if (res.status == 'success') {
+      } else {
+      }
+    }, err => {
+      console.error('ERROR', err);
     });
+    console.log(seq);
   }
 }
