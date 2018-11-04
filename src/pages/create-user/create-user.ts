@@ -42,10 +42,6 @@ export class CreateUserPage {
       // If it's base64 (DATA_URL):
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       console.log(this.user);
-      let body = {
-        username: this.user["username"],
-        imagefile: "hi"
-      }
       let formData: FormData = new FormData(); 
       formData.append('username',  this.user._user["username"]); 
       formData.append('imagefile', base64Image); 

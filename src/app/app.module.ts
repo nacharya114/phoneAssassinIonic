@@ -15,6 +15,8 @@ import { Items } from '../mocks/providers/items';
 import { Settings, User, Api } from '../providers';
 import { MyApp } from './app.component';
 import { PhotoUploadProvider } from '../providers/photo-upload/photo-upload';
+import { CameraPreview } from '@ionic-native/camera-preview';
+import { ImageHandlerProvider } from '../providers/image-handler/image-handler';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -63,6 +65,7 @@ export function provideSettings(storage: Storage) {
     Items,
     User,
     Camera,
+    CameraPreview,
     File,
     FileTransfer,
     SplashScreen,
@@ -70,7 +73,8 @@ export function provideSettings(storage: Storage) {
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    PhotoUploadProvider
+    PhotoUploadProvider,
+    ImageHandlerProvider
   ]
 })
 export class AppModule { }
