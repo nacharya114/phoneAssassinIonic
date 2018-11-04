@@ -44,9 +44,17 @@ export class CreateUserPage {
       console.log(base64Image);
       let body = {
         username: this.user["username"],
-        imagefile: base64Image
+        imagefile: "hi"
       }
-      this.api.post("add_picture",  body).subscribe((resp)=> {
+      let formData: FormData = new FormData(); 
+      formData.append('username',  this.user["username"]); 
+      formData.append('imagefile', base64Image); 
+      let reqOpts = {
+        headers: {
+          'Content-Type':  "application/x-www-form-urlencoded"
+        }
+      }
+      this.api.post("add_picture",  formData).subscribe((resp)=> {
         console.log(resp);
        this.navCtrl.push(createOrJoin); 
       });

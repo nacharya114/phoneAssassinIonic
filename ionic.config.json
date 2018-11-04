@@ -6,7 +6,7 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "http://phone-assassins2.appspot.com"
+      "proxyUrl": "http://localhost:8080"
     }
   ],
   "type": "ionic-angular"
