@@ -26,6 +26,8 @@ import { Api } from '../api/api';
 @Injectable()
 export class User {
   _user: any;
+  createdGame: boolean;
+  game_id: string;
 
   constructor(public api: Api) { }
 
@@ -80,5 +82,17 @@ export class User {
    */
   _loggedIn(resp) {
     this._user = resp.user;
+  }
+
+  setCreatedGameStats(param) {
+    if(param) {
+      this.createdGame = true;
+    } else {
+      this.createdGame = false;
+    }
+  }
+
+  setGameId(param) {
+    this.game_id = param;
   }
 }
