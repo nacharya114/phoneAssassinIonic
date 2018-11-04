@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview';
+import { ImageHandlerProvider } from '../../providers/image-handler/image-handler'
 
 /**
  * Generated class for the GameplayPage page.
@@ -17,10 +18,14 @@ import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, Camer
 export class GameplayPage {
 
   picture: any;
+  bgImage: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform, private cameraPreview: CameraPreview) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform, 
+              private cameraPreview: CameraPreview, private imagHandler: ImageHandlerProvider
+      ) {
     this.platform.ready().then(() =>{
       this.picture = null;
+      this.bgImage = new URL('../assets/imgs/ionball.png');
 
       const cameraPreviewOpts: CameraPreviewOptions = {
         x: 0,
@@ -64,12 +69,12 @@ export class GameplayPage {
 
   takePicture() {
     const pictureOpts: CameraPreviewPictureOptions = {
-      width: 1280,
-      height: 1280,
+      width: 1000,
+      height: 1000,
       quality: 85
     }
     this.cameraPreview.takePicture(pictureOpts).then((imageData) => {
-      this.picture = 'data:image/jpeg;base64,' + imageData;
+      this.bgImage = this.imagHandler.getBlob('data:image/jpeg;base64,' + imageData);
     }, (err) => {
       console.log(err);
       this.picture = 'assets/img/test.jpg';
