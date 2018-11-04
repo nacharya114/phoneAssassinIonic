@@ -36,10 +36,10 @@ export class GameplayPage {
     
       this.cameraPreview.startCamera(cameraPreviewOpts).then(
         (res)=>{
-          console.log(res);
+          console.log("CameraStartSuccess " + res);
       }, 
       (err)=>{
-        console.log(err);
+        console.log("CameraFail "+ err);
       });
 
     });
@@ -53,6 +53,14 @@ export class GameplayPage {
 
     this.cameraPreview.show();
   }
+
+  // ionViewWillLoad() {
+  //   document.getElementsByTagName('html')[0].style.visibility = 'hidden';
+  // }
+
+  // ionViewWillLeave() { 
+  //   document.getElementsByTagName('html')[0].style.visibility = 'visible';
+  // }
 
   takePicture() {
     const pictureOpts: CameraPreviewPictureOptions = {
