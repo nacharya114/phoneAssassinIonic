@@ -3,7 +3,6 @@
     <name>MyApp</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://10.67.158.136:8102" />
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -96,4 +95,5 @@
     <engine name="ios" spec="~4.5.5" />
     <engine name="android" spec="^7.1.1" />
     <plugin name="cordova-plugin-camera-preview" spec="0.10.0" />
+    <plugin name="cordova-plugin-camera" spec="4.0.3" />
 </widget>
