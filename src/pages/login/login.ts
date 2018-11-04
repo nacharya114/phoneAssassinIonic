@@ -36,9 +36,9 @@ export class LoginPage {
     this.user.login(this.account).subscribe((resp) => {
       console.log(resp);
       console.log(this.user._user);
-      this.navCtrl.push(GamePage);
+      this.navCtrl.push(MainPage);
     }, (err) => {
-      this.navCtrl.push(GamePage);
+      this.navCtrl.push(MainPage);
       // Unable to log in
       let toast = this.toastCtrl.create({
         message: this.loginErrorString,

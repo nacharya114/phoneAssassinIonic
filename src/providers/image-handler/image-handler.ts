@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { File } from '@ionic-native/file';
 /*
   Generated class for the ImageHandlerProvider provider.
 
@@ -10,13 +11,13 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ImageHandlerProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, private file: File) {
     console.log('Hello ImageHandlerProvider Provider');
   }
 
 
   getBlob (b64Data) {
-    let contentType: any = '';
+    let contentType: any = 'image/jpeg';
     const sliceSize = 512;
 
     b64Data = b64Data.replace(/data\:image\/(jpeg|jpg|png)\;base64\,/gi, '');
@@ -37,9 +38,19 @@ export class ImageHandlerProvider {
     }
 
     let blob = new Blob(byteArrays, {type: contentType});
-    var urlCreator = window.URL;
-    let imgURL = urlCreator.createObjectURL(blob);
-    return imgURL;
+   
+    return blob;
   }
+
+  saveFile(blob) {
+    let filename = "target.jpeg";
+    let directory = this.file.dataDirectory;
+
+    this.file.writeFile(directory, filename, blob);
+
+    return directory + filename;
+
+  }
+
   
 }

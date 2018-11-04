@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../providers/user/user';
 import { Api } from '../../providers/api/api';
+import { GamePage } from '..';
 /**
  * Generated class for the LobbyPage page.
  *
@@ -40,9 +41,15 @@ export class LobbyPage {
     });
     if(gameStarted) {
       //Go to gameplay screen
+      this.navCtrl.push(GamePage);
     }
 
   }
+
+  startGameplay() {
+    this.navCtrl.push(GamePage);
+  }
+
   hasGameStarted() {
     let seq = this.api.get('game/status', this.user.game_id).share();
 

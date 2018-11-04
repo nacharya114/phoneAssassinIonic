@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview';
-import { ImageHandlerProvider } from '../../providers/image-handler/image-handler'
+import { ImageHandlerProvider } from '../../providers/image-handler/image-handler';
+import { Api } from '../../providers/api/api';
+import { User } from '../../providers/user/user';
 
 /**
  * Generated class for the GameplayPage page.
@@ -21,11 +23,12 @@ export class GameplayPage {
   bgImage: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform, 
-              private cameraPreview: CameraPreview, private imagHandler: ImageHandlerProvider
+              private cameraPreview: CameraPreview, private imagHandler: ImageHandlerProvider, 
+              private api: Api, private user: User
       ) {
     this.platform.ready().then(() =>{
       this.picture = null;
-      this.bgImage = new URL('../assets/imgs/ionball.png');
+      this.bgImage = '../assets\\imgs\\20181103_145908.jpg';
 
       const cameraPreviewOpts: CameraPreviewOptions = {
         x: 0,
@@ -54,6 +57,18 @@ export class GameplayPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad GameplayPage');
 
+      // let body = {
+      //   username: this.user._user["username"],
+      //   game_id: this.user.game_id
+      // }    
+      let formData: FormData = new FormData(); 
+      formData.append('username',  "Sam"); 
+      formData.append('game_id', "NewGame1"); 
+      // this.api.post('game/target', formData).subscribe((data)=> {
+      //   let blob = this.imagHandler.getBlob(data["photo_string"]);
+      //   this.bgImage = this.imagHandler.saveFile(blob)
+
+      // });
  
 
     this.cameraPreview.show();
@@ -74,7 +89,14 @@ export class GameplayPage {
       quality: 85
     }
     this.cameraPreview.takePicture(pictureOpts).then((imageData) => {
-      this.bgImage = this.imagHandler.getBlob('data:image/jpeg;base64,' + imageData);
+      let b64data ='data:image/jpeg;base64,' + imageData;
+      let body = new FormData();
+        body.append('username', "Sam");
+        body.append('imagefile', b64data);
+      this.api.post('game/attempt_kill', body).subscribe((res) => {
+        
+      });
+      // this.bgImage = this.imagHandler.saveFile(this.imagHandler.getBlob(b64data));
     }, (err) => {
       console.log(err);
       this.picture = 'assets/img/test.jpg';

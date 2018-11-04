@@ -1,6 +1,8 @@
 page-gameplay {
     background-color: transparent !important;
     
+    html, body, ion-app, div.nav-decor, .ion-content, .app-root {
+             background-color: transparent !important; }
    
 
     #ionball {
