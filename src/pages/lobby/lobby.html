@@ -1,0 +1,50 @@
+<!--
+  Generated template for the LobbyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Game Lobby
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page1" style="background-color:#CD2A2A;">
+  <form id="gameLobby-form1">
+    <div id="gameLobby-markdown1" class="show-list-numbers-and-dots">
+      <p style="color:#000000;font-size:17px;">
+        Tell your friends to join with the game code!
+      </p>
+    </div>
+  </form>
+  <ion-card id="gameLobby-card21">
+    <ion-list>
+      <div style="width:100%;height:220px;margin:0px 0px;line-height:250px;background-color:#e8ebef;text-align:center;">
+        <i class="icon ion-image" style="font-size:64px;color:#888;vertical-align:middle;"></i>
+      </div>
+      <ion-item id="gameLobby-list-item-container2">
+        <div id="gameLobby-markdown3" style="text-align:center;" class="show-list-numbers-and-dots">
+          <p style="margin-top:0px;color:#000000;">
+            Group size:
+          </p>
+        </div>
+      </ion-item>
+      <ion-input id="amount" type="number" [(ngModel)]="value"></ion-input>
+      <form id="gameLobby-form2">
+        <ion-item id="gameLobby-textarea1">
+          <ion-label></ion-label>
+          <ion-textarea placeholder=""></ion-textarea>
+        </ion-item>
+      </form>
+    </ion-list>
+  </ion-card>
+  <button id="gameLobby-button6" ion-button color="positive" block>
+    Start Game
+  </button>
+  <button id="Update Status" ion-button color="positive" block
+          large style="border-radius:5px 5px 5px 5px;" (click)="update()">
+    Update Status
+  </button>
+</ion-content>
