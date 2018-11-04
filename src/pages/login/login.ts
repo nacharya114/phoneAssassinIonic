@@ -35,6 +35,7 @@ export class LoginPage {
   doLogin() {
     this.user.login(this.account).subscribe((resp) => {
       console.log(resp);
+      console.log(this.user._user);
       this.navCtrl.push(MainPage);
     }, (err) => {
       this.navCtrl.push(MainPage);

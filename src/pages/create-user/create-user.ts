@@ -41,13 +41,13 @@ export class CreateUserPage {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
       let base64Image = 'data:image/jpeg;base64,' + imageData;
-      console.log(base64Image);
+      console.log(this.user);
       let body = {
         username: this.user["username"],
         imagefile: "hi"
       }
       let formData: FormData = new FormData(); 
-      formData.append('username',  this.user["username"]); 
+      formData.append('username',  this.user._user["username"]); 
       formData.append('imagefile', base64Image); 
       let reqOpts = {
         headers: {
@@ -74,7 +74,7 @@ export class CreateUserPage {
   }
   postImage(image) {
     let body = {
-      "username": this.user["username"],
+      "username": this.user._user["username"],
       "imagefile": image 
     }
     return this.api.post("add_picture", body).toPromise()

@@ -31,7 +31,7 @@ export class HubPage {
 
   createGame() {
     let body = {
-      "username": this.user["username"],
+      "username": this.user._user["username"],
        "game_id": this.gamePhrase.phrase
     };
 
@@ -39,31 +39,34 @@ export class HubPage {
 
     seq.subscribe((res: any) => {
       // If the API returned a successful response, mark the user as logged in
+      console.log(res);
       if (res.status == 'success') {
+        console.log(this.user._user);
       } else {
       }
     }, err => {
       console.error('ERROR', err);
     });
-    console.log(seq);
+    
     
   }
 
   joinGame() {
     let body = {
-      "username": this.user["username"],
+      "username": this.user._user["username"],
       "game_id": this.gamePhrase.phrase
     };
     let seq = this.api.get('game/join', body).share();
 
     seq.subscribe((res: any) => {
       // If the API returned a successful response, mark the user as logged in
+      console.log(res);
       if (res.status == 'success') {
       } else {
       }
     }, err => {
       console.error('ERROR', err);
     });
-    console.log(seq);
+   
   }
 }
