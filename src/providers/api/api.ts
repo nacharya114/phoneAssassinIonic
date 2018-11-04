@@ -34,8 +34,8 @@ export class Api {
       'Access-Control-Allow-Origin': '*'
     });
 
-    console.log("Added header: ")
-    console.log(this.url + '/' + endpoint)
+    //console.log("Added header: ")
+    //console.log(this.url + '/' + endpoint)
 
     return this.http.get(this.url + '/' + endpoint, reqOpts);
   }
